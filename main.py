@@ -1,6 +1,6 @@
 import config.args as args
-import scraper.fetch as fetch
+import scraper.handler as handler
 
-url = args.get()['url']
+options = args.get()
 
-print(fetch.get(url))
+handler.scrap(options)
