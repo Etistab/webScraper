@@ -14,12 +14,19 @@ def scrapDown(links, visited, depth, maxDepth):
   for link in links:
     if link not in visited and depth < maxDepth:
       visited.add(link)
-      document = download(link)
-      scrapDown(html.getLinks(document), visited, depth + 1, maxDepth)
+      try:
+        document = download(link)
+        scrapDown(html.getLinks(document), visited, depth + 1, maxDepth)
+      except Exception as e:
+        logger.info(e)
+        logger.info(f'Skipping {link}!')
 
 def download(link):
   logger.info(f'Downloading {url.getFilename(link)}...')
-  document = fetch.get(link)
+  try:
+    document = fetch.get(link)
+  except:
+    raise Exception(f'Unable to fetch {link}!')
   io.save(link, document)
   logger.info(f'{url.getFilename(link)} was downloaded !')
   return document
