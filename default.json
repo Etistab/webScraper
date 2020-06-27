@@ -1,5 +1,6 @@
 {
   "depth": 0,
   "url": "http://example.com",
-  "crossorigin": false
+  "crossorigin": false,
+  "outputDir": "/tmp"
 }
