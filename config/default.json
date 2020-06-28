@@ -1,6 +1,6 @@
 {
-  "depth": 0,
+  "depth": 1,
   "url": "http://example.com",
   "crossorigin": false,
-  "outputDir": "/tmp"
+  "outputDir": "/home/qcaritey/tmp"
 }
