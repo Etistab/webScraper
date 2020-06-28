@@ -27,7 +27,7 @@ def scrap(options):
       raise Exception(f'Unable to fetch {link}!')
     io.save(link, document, { 'outputDir': options['outputDir'] })
     stats['success'] += 1
-    logger.info(f'{url.getFilename(link)} was downloaded !')
+    logger.info(f'{url.getFilename(link)} was downloaded from origin {url.getDomain(link)}!')
     return document
 
   visited = set()
