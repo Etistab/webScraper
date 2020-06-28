@@ -8,14 +8,15 @@ def scrap(options):
   def scrapDown(links, depth):
     maxDepth = options['depth']
     for link in links:
-      if link not in visited and depth < maxDepth:
-        visited.add(link)
-        try:
-          document = download(link)
-          scrapDown(html.getLinks(document), depth + 1)
-        except Exception as e:
-          logger.info(e)
-          logger.info(f'Skipping {link}!')
+      if options['crossorigin'] == True or url.getDomain(options['url']) == url.getDomain(link):
+        if link not in visited and depth < maxDepth:
+          visited.add(link)
+          try:
+            document = download(link)
+            scrapDown(html.getLinks(document), depth + 1)
+          except Exception as e:
+            logger.info(e)
+            logger.info(f'Skipping {link}!')
 
   def download(link):
     logger.info(f'Downloading {url.getFilename(link)}...')
