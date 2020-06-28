@@ -22,12 +22,12 @@ def scrap(options):
     stats['overall'] += 1
     try:
       document = fetch.get(link)
-    except:
+      logger.info(f'{url.getFilename(link)} was downloaded from origin {url.getDomain(link)}!')
+      io.save(link, document, { 'outputDir': options['outputDir'] })
+    except Exception as e:
       stats['failures'] += 1
-      raise Exception(f'Unable to fetch {link}!')
-    io.save(link, document, { 'outputDir': options['outputDir'] })
+      raise e
     stats['success'] += 1
-    logger.info(f'{url.getFilename(link)} was downloaded from origin {url.getDomain(link)}!')
     return document
 
   visited = set()
@@ -38,5 +38,4 @@ def scrap(options):
     scrapDown(html.getLinks(document), 0)
   except Exception as e:
     logger.info(e)
-    logger.info(f'''Invalid url: {options['url']}!''')
   return stats

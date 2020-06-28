@@ -1,4 +1,7 @@
 import requests as req
 
 def get(url):
-  return req.get(url).text
+  try:
+    return req.get(url).text
+  except:
+    raise Exception(f'An error occurred while fetching {url}!')

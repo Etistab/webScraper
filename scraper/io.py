@@ -13,5 +13,4 @@ def save(link, document, options):
     with open(path.join(p, url.getFilename(link)), 'w') as f:
       f.write(document)
   except:
-    logger.info(f'An error occured while saving {link}!')
-    logger.info(f'Skipping document...')
+    raise Exception(f'An error occurred while saving {link}!')
