@@ -33,6 +33,10 @@ def scrap(options):
   visited = set()
   stats = { 'overall': 0, 'success': 0, 'failures': 0 }
   visited.add(options['url'])
-  document = download(options['url'])
-  scrapDown(html.getLinks(document), 0)
+  try:
+    document = download(options['url'])
+    scrapDown(html.getLinks(document), 0)
+  except Exception as e:
+    logger.info(e)
+    logger.info(f'''Invalid url: {options['url']}!''')
   return stats
